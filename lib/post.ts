@@ -19,6 +19,25 @@ export const getYearMonthPostIds = (year: string, month: string) => {
   return ids
 }
 
+export const getAllPostIds = () => {
+  const fileNames = (dir: string, files: Array<String> = []) => {
+    const dirents = fs.readdirSync(dir, { withFileTypes: true })
+    const dirs = []
+    for (const dirent of dirents) {
+      if (dirent.isDirectory()) dirs.push(`${dir}/${dirent.name}`)
+      if (dirent.isFile()) files.push(`${dir}/${dirent.name}`.replace(path.join(process.cwd(), 'posts/'), ''))
+    }
+    for (const d of dirs) {
+      files = fileNames(d, files)
+    }
+    return files
+  }
+
+  return fileNames(postsDirectory).map((fileName) => {
+    return fileName.replace(/\.md$/, '').split('/')
+  })
+}
+
 export const getAllPostPaths = () => {
   const fileNames = (dir: string, files: Array<String> = []) => {
     const dirents = fs.readdirSync(dir, { withFileTypes: true })
