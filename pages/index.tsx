@@ -1,3 +1,4 @@
+import { GetStaticProps } from 'next'
 import Layout from '../components/Layout'
 
 const IndexPage = () => (
@@ -7,3 +8,9 @@ const IndexPage = () => (
 )
 
 export default IndexPage
+
+export const getStaticProps: GetStaticProps = async () => {
+
+  const data = {}
+  return { props: data }
+}

@@ -19,7 +19,7 @@ export const getYearMonthPostIds = (year: string, month: string) => {
   return ids
 }
 
-export const getAllPostIds = () => {
+export const getAllPostPaths = () => {
   const fileNames = (dir: string, files: Array<String> = []) => {
     const dirents = fs.readdirSync(dir, { withFileTypes: true })
     const dirs = []

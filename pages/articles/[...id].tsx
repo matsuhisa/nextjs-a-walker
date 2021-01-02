@@ -1,7 +1,7 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Layout from '../../components/Layout'
 import { Post } from '../../interfaces'
-import { getAllPostIds, getPostData } from '../../lib/post'
+import { getAllPostPaths, getPostData } from '../../lib/post'
 
 const PostDetail = (data: Post) => {
   const encodeTitle: string = encodeURIComponent(data.title.replace('/', '／'))
@@ -16,7 +16,7 @@ const PostDetail = (data: Post) => {
 export default PostDetail
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = getAllPostIds()
+  const paths = getAllPostPaths()
   return {
     paths, fallback: false
   }
