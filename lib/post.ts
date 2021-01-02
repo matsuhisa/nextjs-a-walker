@@ -118,10 +118,12 @@ export const getPostsData = async (ids: any[][]) => {
 
     const processedContent = remark().use(gfm).use(highlight).use(html).process(matterResult.content)
     const contentHtml = processedContent.toString()
+    const unixtime = new Date(matterResult.data.date).getTime()
 
     return {
       id,
       contentHtml,
+      unixtime,
       ...matterResult.data,
     }
   })
