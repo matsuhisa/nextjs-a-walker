@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react'
-import Link from 'next/link'
 import Head from 'next/head'
 
 type Props = {
@@ -7,8 +6,9 @@ type Props = {
   title?: string
 }
 
-const Layout = ({ children, title = 'めも帖' }: Props) => (
-  <div>
+const Layout = ({ children, title = 'めも帖' }: Props) => {
+  return (
+    <div>
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
@@ -22,6 +22,7 @@ const Layout = ({ children, title = 'めも帖' }: Props) => (
     <footer>
     </footer>
   </div>
-)
+  )
+}
 
 export default Layout
