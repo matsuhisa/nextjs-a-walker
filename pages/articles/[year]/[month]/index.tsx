@@ -9,6 +9,7 @@ type monthYearProps = {
   year: string,
   month: string,
   posts: Post[],
+  yearAndMonths?: any[],
 }
 
 const MonthIndex = (data: monthYearProps) => {
@@ -28,6 +29,13 @@ const MonthIndex = (data: monthYearProps) => {
             </>
           ))}
         </dl>
+        <ul>
+        {data.yearAndMonths?.map((yearAndMonth) => (
+          <li>
+            <a href={`/articles/${yearAndMonth.year}/${yearAndMonth.month}`}>{yearAndMonth.year}年{yearAndMonth.month}月</a>
+          </li>
+        ))}
+        </ul>
       </Layout>
     </>
   )
@@ -52,6 +60,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       year: year,
       month: month,
       posts: posts,
+      yearAndMonths: getAllYearMonths().map( (path) => { return path.params } ).sort((a, b) => Number(b.year) - Number(a.year)),
     }
     return { props: data }
   } else {
