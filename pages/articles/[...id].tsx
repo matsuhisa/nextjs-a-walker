@@ -19,6 +19,7 @@ const PostDetail = (data: DetailProps) => {
       </Head>
       <Layout title={data.post.title}>
         <h1>{data.post.title}</h1>
+        <div>{data.post.date}</div>
         <div dangerouslySetInnerHTML={{ __html: data.post.contentHtml }} />
         <ul>
         {data.yearAndMonths?.map((yearAndMonth) => (
