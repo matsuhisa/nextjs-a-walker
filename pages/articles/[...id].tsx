@@ -17,17 +17,19 @@ const PostDetail = (data: DetailProps) => {
       <Head>
         <meta property="og:image" content={ogImageUrl} key="title" />
       </Head>
-      <Layout title={data.post.title}>
-        <h1>{data.post.title}</h1>
-        <div>{data.post.date}</div>
-        <div dangerouslySetInnerHTML={{ __html: data.post.contentHtml }} />
-        <ul>
-        {data.yearAndMonths?.map((yearAndMonth) => (
-          <li>
-            <a href={`/articles/${yearAndMonth.year}/${yearAndMonth.month}`}>{yearAndMonth.year}年{yearAndMonth.month}月</a>
-          </li>
-        ))}
-        </ul>
+      <Layout title={`${data.post.title} | めも帖`}>
+        <div className={'post'}>
+          <h1 className={'post-title'}>{data.post.title}</h1>
+          <div className={'post-date'}>{data.post.date}</div>
+          <div className={'post-body'} dangerouslySetInnerHTML={{ __html: data.post.contentHtml }} />
+          <ul>
+          {data.yearAndMonths?.map((yearAndMonth) => (
+            <li>
+              <a href={`/articles/${yearAndMonth.year}/${yearAndMonth.month}`}>{yearAndMonth.year}年{yearAndMonth.month}月</a>
+            </li>
+          ))}
+          </ul>
+        </div>
       </Layout>
     </>
   )
