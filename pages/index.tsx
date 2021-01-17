@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next'
+import Link from 'next/link'
 import Layout from '../components/Layout'
 import { getAllPostIds, getAllYearMonths, getPostsData } from '../lib/post'
 
@@ -10,14 +11,17 @@ type IndexProps = {
 const IndexPage = (data: IndexProps) => (
   <Layout title={"めも帖"}>
     <h1>めも帖</h1>
-    {data.posts.map((post) => (
-      <a href={`/articles/${post.id.join('/')}`} key={post.id.join('-')}>
-        <h2 dangerouslySetInnerHTML={{ __html: post.title }} />
-        <img src={post.image ? post.image:''} width={100} />
-        <p>{post.description}</p>
-        <p>{post.date}</p>
-      </a>
-    ))}
+    <div className="top-articles">
+      {data.posts.map((post) => (
+        <Link href={`/articles/${post.id.join('/')}`} key={post.id.join('-')}>
+          <a className={'article'}>
+            <h2 className={'article__title'} dangerouslySetInnerHTML={{ __html: post.title }} />
+            <p className={'article__description'}>{post.description}</p>
+            <p className={'article__date'}>{post.date}</p>
+          </a>
+        </Link>
+      ))}
+    </div>
     <ul>
     {data.yearAndMonths?.map((yearAndMonth) => (
       <li>

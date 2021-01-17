@@ -1,1 +1,7 @@
-@import './entry.scss';
+@import './top.scss';
+@import './entry/entry.scss';
+
+.layout-body {
+  max-width: 600px;
+  margin: 0 auto;
+}
