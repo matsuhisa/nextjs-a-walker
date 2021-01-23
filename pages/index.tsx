@@ -21,6 +21,7 @@ const IndexPage = (data: IndexProps) => (
         </Link>
       ))}
     </div>
+    <hr />
     <ul>
     {data.yearAndMonths?.map((yearAndMonth) => (
       <li>

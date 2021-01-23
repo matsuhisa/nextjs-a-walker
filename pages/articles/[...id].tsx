@@ -23,7 +23,7 @@ const PostDetail = (data: DetailProps) => {
       </Head>
       <Layout title={`${data.post.title} | めも帖`}>
         <div className={'post'}>
-          <h1 className={'post-title'}>{data.post.title}</h1>
+          <h1 className={'post-title'} dangerouslySetInnerHTML={{ __html: data.post.title }} />
           <div className={'post-date'}>{data.post.date}</div>
           <div className={'post-body'} dangerouslySetInnerHTML={{ __html: data.post.contentHtml }} />
 

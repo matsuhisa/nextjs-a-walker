@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Layout from '../../../../components/Layout'
 import { Post } from '../../../../interfaces'
+import { cloudinaryOgImageUrl } from '../../../../lib/cloudinaryOgImage'
 import { getAllYearMonths, getPostsData, getYearMonthPostIds } from '../../../../lib/post'
 
 type monthYearProps = {
@@ -13,22 +14,26 @@ type monthYearProps = {
 }
 
 const MonthIndex = (data: monthYearProps) => {
+  const title = `${data.year}年${data.month}月別（${data.posts.length}件） | めも帖`
+  const ogImageUrl = cloudinaryOgImageUrl(title)
   return(
     <>
       <Head>
+        <meta property="og:image" content={ogImageUrl} key="title" />
       </Head>
-      <Layout title={`${data.year}年${data.month}月別（${data.posts.length}件） | めも帖`}>
-        <h2>{data.year}年{data.month}月別（{data.posts.length}件）</h2>
-        <dl>
+      <Layout title={title}>
+        <h1>{data.year}年{data.month}月別（{data.posts.length}件）</h1>
+        <div className="top-articles">
           {data.posts.map((post: Post) => (
-            <>
-              <dt>{post.date}</dt>
-              <dd>
-                <Link href={`/articles/${post.id.join('/')}`}>{post.title}</Link>
-              </dd>
-            </>
+            <Link href={`/articles/${post.id.join('/')}`}>
+              <a className={'article'}>
+                <p className={'article__date'}>{post.date}</p>
+                <h2 className={'article__title'} dangerouslySetInnerHTML={{ __html: post.title }} />
+              </a>
+            </Link>
           ))}
-        </dl>
+        </div>
+        <hr />
         <ul>
         {data.yearAndMonths?.map((yearAndMonth) => (
           <li>
