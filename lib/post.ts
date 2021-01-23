@@ -118,6 +118,18 @@ export const getPostData = async (id: string[] | any[]) => {
       element.remove()
     }
   })
+
+  // アンカー要素の _blank
+  const links = root.querySelectorAll('a')
+  links.forEach((element: any) => {
+    const href: string = element.getAttribute('href')
+    const regex = /^(http|https)/
+    if (href && href.match(regex)) {
+      element.setAttribute('target', '_blank')
+      element.setAttribute('rel', 'noopener noreferrer')
+    }
+  })
+
   contentHtml = root.toString()
 
   return {
