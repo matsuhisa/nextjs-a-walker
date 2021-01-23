@@ -1,6 +1,4 @@
 .post {
-  max-width: 600px;
-  margin: 0 auto;
 }
 
 .post-date {
@@ -13,21 +11,28 @@
   margin: 0;
 
   h1 {
-    font-size: 32px;
-    font-weight: bold;
-    line-height: 2;
-  }
-
-  h2 {
     font-size: 28px;
     font-weight: bold;
     line-height: 2;
+    margin: 2rem 0;
   }
 
-  h3 {
+  h2 {
     font-size: 22px;
     font-weight: bold;
     line-height: 2;
+    margin: 2rem 0 0.4rem;
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 2;
+    margin: 1rem 0 0.4rem;
+  }
+
+  ul {
+    margin: 0.4rem 0;
   }
 
   p {

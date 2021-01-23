@@ -1,7 +1,20 @@
 @import './top.scss';
 @import './entry/entry.scss';
 
+body {
+  color: #333333;
+}
+
+a {
+  color: #333333;
+
+  &:hover {
+    color: #000000;
+  }
+}
+
 .layout-body {
   max-width: 600px;
   margin: 0 auto;
+  padding: 0 1rem;
 }

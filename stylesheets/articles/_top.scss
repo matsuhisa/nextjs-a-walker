@@ -1,2 +1,29 @@
 .top-articles {
 }
+
+.article {
+  display: block;
+  text-decoration: none;
+
+  & + .article {
+    margin-top: 2rem;
+  }
+
+  .article__title {
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 1.4;
+    text-decoration: underline;
+    margin: 0 0.4rem;
+  }
+
+  .article__date {
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .article__description {
+    line-height: 1.2;
+    margin: 0;
+  }
+}
