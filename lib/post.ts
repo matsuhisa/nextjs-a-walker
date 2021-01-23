@@ -5,6 +5,7 @@ import remark from 'remark'
 import html from 'remark-html'
 import gfm from 'remark-gfm'
 const highlight = require('remark-highlight.js')
+const HTMLParser = require('node-html-parser')
 
 const postsDirectory: string = path.join(process.cwd(), 'posts')
 
@@ -101,7 +102,23 @@ export const getPostData = async (id: string[] | any[]) => {
   const matterResult = matter(fileContents)
 
   const processedContent = await remark().use(gfm).use(highlight).use(html).process(matterResult.content)
-  const contentHtml = processedContent.toString()
+  let contentHtml = processedContent.toString()
+
+  const root = HTMLParser.parse(contentHtml)
+
+  // 画像のキャプション
+  const images = root.querySelectorAll('img')
+  images.forEach((element: any) => {
+    const title: string = element.getAttribute('title')
+    if (title) {
+      element.insertAdjacentHTML(
+        'afterend',
+        `<figure>${element.toString()}<figcaption class="figure-caption">${title}</figcaption></figure>`
+      )
+      element.remove()
+    }
+  })
+  contentHtml = root.toString()
 
   return {
     id,
