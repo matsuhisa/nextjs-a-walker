@@ -19,6 +19,7 @@ const PostDetail = (data: DetailProps) => {
     <>
       <Head>
         <meta property="og:image" content={ogImageUrl} key="title" />
+        <meta name="description" content={data.post.description} />
       </Head>
       <Layout title={`${data.post.title} | めも帖`}>
         <div className={'post'}>

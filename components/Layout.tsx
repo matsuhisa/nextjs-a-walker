@@ -22,12 +22,12 @@ const Layout = ({ children, title = 'めも帖' }: Props) => {
           </Link>
         </header>
         {children}
+        {/* <footer className={'global-footer'}>
+          <Link href={'/about'}>
+            <a className={'global-footer__label'}>書いている人</a>
+          </Link>
+        </footer> */}
       </div>
-      <footer className={'global-footer'}>
-        <Link href={'/about'}>
-          <a className={'global-footer__label'}>書いている人</a>
-        </Link>
-      </footer>
     </>
   )
 }
