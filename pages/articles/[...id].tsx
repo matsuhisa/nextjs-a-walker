@@ -26,24 +26,27 @@ const PostDetail = (data: DetailProps) => {
           <h1 className={'post-title'} dangerouslySetInnerHTML={{ __html: data.post.title }} />
           <div className={'post-date'}>{data.post.date}</div>
           <div className={'post-body'} dangerouslySetInnerHTML={{ __html: data.post.contentHtml }} />
+          <nav role={'navigation'} aria-label={'Pagination Navigation'}>
+            <ul className={'post-pagination'}>
+                <li className={'post-pagination__next'}>
+                  {data.nextPost && 
+                    <Link href={`/articles/${data.nextPost.id.join('/')}`}>
+                      <a className={'post-pagination__next-label'}>{data.nextPost.title}</a>
+                    </Link>
+                  }
+                </li>
+                <li className={'post-pagination__prev'}>
+                  {data.prevPost && 
+                    <Link href={`/articles/${data.prevPost.id.join('/')}`}>
+                      <a className={'post-pagination__prev-label'}>{data.prevPost.title}</a>
+                    </Link>
+                  }
+               </li>
+            </ul>
+          </nav>
 
-          <ul>
-            {data.nextPost && 
-              <li>
-                <Link href={`/articles/${data.nextPost.id.join('/')}`}>
-                  <a className={'post-pager__next'}>{data.nextPost.title}</a>
-                </Link>
-              </li>
-            }
-            {data.prevPost && 
-              <li>
-                <Link href={`/articles/${data.prevPost.id.join('/')}`}>
-                  <a className={'post-pager__next'}>{data.prevPost.title}</a>
-                </Link>
-              </li>
-            }
-          </ul>
-          <hr />
+
+          <h2>📅 月別アーカイブ</h2>
           <ul>
           {data.yearAndMonths?.map((yearAndMonth) => (
             <li>

@@ -22,8 +22,8 @@ const MonthIndex = (data: monthYearProps) => {
         <meta property="og:image" content={ogImageUrl} key="title" />
       </Head>
       <Layout title={title}>
-        <h1>{data.year}年{data.month}月別（{data.posts.length}件）</h1>
-        <div className="top-articles">
+        <h1>📅 {data.year}年{data.month}月別（{data.posts.length}件）</h1>
+        <div className="year-month-articles">
           {data.posts.map((post: Post) => (
             <Link href={`/articles/${post.id.join('/')}`}>
               <a className={'article'}>
@@ -33,7 +33,8 @@ const MonthIndex = (data: monthYearProps) => {
             </Link>
           ))}
         </div>
-        <hr />
+
+        <h2>📅 月別アーカイブ</h2>
         <ul>
         {data.yearAndMonths?.map((yearAndMonth) => (
           <li>

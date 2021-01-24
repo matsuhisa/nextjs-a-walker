@@ -63,3 +63,59 @@
     margin: 0.4rem 0 1.5rem;
   }
 }
+
+.post-pagination {
+  list-style: none;
+  margin: 2rem 0;
+  padding: 1rem 0;
+  display: flex;
+  border-top: 1px solid #999999;
+  border-bottom: 1px solid #999999;
+
+  .post-pagination__next {
+    display: flex;
+    width: 50%;
+    padding: 0.6rem 0;
+
+    &::before {
+      content: '';
+      width: 12px;
+      height: 12px;
+      display: block;
+      min-height: 0%; // IE11 対応
+      margin-top: calc(12px / 2);
+      border-top: solid 1px #666666;
+      border-right: solid 1px #666666;
+      transform: rotate(225deg);
+    }
+  }
+
+  .post-pagination__next-label {
+    flex: 1;
+  }
+
+  .post-pagination__prev {
+    display: flex;
+    width: 50%;
+    padding: 0.6rem 0;
+
+    text-align: right;
+    border-left: 1px solid #999999;
+
+    &::after {
+      content: '';
+      width: 12px;
+      height: 12px;
+      display: block;
+      min-height: 0%; // IE11 対応
+      margin-top: calc(12px / 2);
+      border-top: solid 1px #666666;
+      border-right: solid 1px #666666;
+      transform: rotate(45deg);
+    }
+  }
+
+  .post-pagination__prev-label {
+    flex: 1;
+  }
+}
