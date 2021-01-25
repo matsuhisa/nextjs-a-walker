@@ -9,8 +9,8 @@ import { getAllPostIds, getAllPostPaths, getAllYearMonths, getPostData, getPosts
 type DetailProps = {
   post: Post,
   yearAndMonths?: any[],
-  nextPost: {},
-  prevPost: {},
+  nextPost?: {},
+  prevPost?: {},
 }
 
 const PostDetail = (data: DetailProps) => {
@@ -31,14 +31,18 @@ const PostDetail = (data: DetailProps) => {
                 <li className={'post-pagination__next'}>
                   {data.nextPost && 
                     <Link href={`/articles/${data.nextPost.id.join('/')}`}>
-                      <a className={'post-pagination__next-label'}>{data.nextPost.title}</a>
+                      <a className={'post-pagination__next-label'}>
+                        <span className={'post-pagination__next-label-title'}>{data.nextPost.title}</span>
+                      </a>
                     </Link>
                   }
                 </li>
                 <li className={'post-pagination__prev'}>
                   {data.prevPost && 
                     <Link href={`/articles/${data.prevPost.id.join('/')}`}>
-                      <a className={'post-pagination__prev-label'}>{data.prevPost.title}</a>
+                      <a className={'post-pagination__prev-label'}>
+                        <span className={'post-pagination__prev-label-title'}>{data.prevPost.title}</span>
+                      </a>
                     </Link>
                   }
                </li>
@@ -89,7 +93,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   let prevPost = null
   let nextPost = null
 
-  if(currentIndex >= 0 && postids.length >= currentIndex){
+  if(currentIndex >= 0 && postids.length > currentIndex && postids.length !== (currentIndex + 1) ){
     prevPost = posts[currentIndex + 1]
   }
   if(currentIndex > 0){
