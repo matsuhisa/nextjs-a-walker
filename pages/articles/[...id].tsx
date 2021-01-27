@@ -9,8 +9,8 @@ import { getAllPostIds, getAllPostPaths, getAllYearMonths, getPostData, getPosts
 type DetailProps = {
   post: Post,
   yearAndMonths?: any[],
-  nextPost?: {},
-  prevPost?: {},
+  nextPost?: any,
+  prevPost?: any,
 }
 
 const PostDetail = (data: DetailProps) => {
@@ -76,36 +76,38 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   let post = {}
   if(params?.id != undefined && typeof(params?.id) !== 'string'){
     post = await getPostData(params?.id)
-  }
 
-  const ids = getAllPostIds()
-  let posts = await getPostsData(ids)
-  posts = posts.sort((a,b) => {
-    if (a.unixtime < b.unixtime) {
-      return 1
-    } else {
-      return -1
+    const ids = getAllPostIds()
+    let posts = await getPostsData(ids)
+    posts = posts.sort((a,b) => {
+      if (a.unixtime < b.unixtime) {
+        return 1
+      } else {
+        return -1
+      }
+    })
+  
+    const postids = posts.map( (post) => { return post.id.join('/') } )
+    const currentIndex: number = postids.indexOf(params?.id.join('/'))
+    let prevPost = null
+    let nextPost = null
+  
+    if(currentIndex >= 0 && postids.length > currentIndex && postids.length !== (currentIndex + 1) ){
+      prevPost = posts[currentIndex + 1]
     }
-  })
+    if(currentIndex > 0){
+      nextPost = posts[currentIndex - 1]
+    }
 
-  const postids = posts.map( (post) => { return post.id.join('/') } )
-  const currentIndex: number = postids.indexOf(params?.id.join('/'))
-  let prevPost = null
-  let nextPost = null
+    const data = {
+      post: post,
+      yearAndMonths: getAllYearMonths().map( (path) => { return path.params } ).sort((a, b) => Number(b.year) - Number(a.year)),
+      prevPost: prevPost,
+      nextPost: nextPost,
+    }
 
-  if(currentIndex >= 0 && postids.length > currentIndex && postids.length !== (currentIndex + 1) ){
-    prevPost = posts[currentIndex + 1]
+    return { props: data }
+  } else {
+    return { props: {} }
   }
-  if(currentIndex > 0){
-    nextPost = posts[currentIndex - 1]
-  }
-
-  const data = {
-    post: post,
-    yearAndMonths: getAllYearMonths().map( (path) => { return path.params } ).sort((a, b) => Number(b.year) - Number(a.year)),
-    prevPost: prevPost,
-    nextPost: nextPost,
-  }
-
-  return { props: data }
 }
