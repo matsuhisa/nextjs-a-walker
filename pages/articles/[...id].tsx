@@ -20,6 +20,7 @@ const PostDetail = (data: DetailProps) => {
       <Head>
         <meta property="og:image" content={ogImageUrl} key="title" />
         <meta name="description" content={data.post.description} />
+        <meta name="twitter:title" content={`${data.post.title} | めも帖`} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <Layout title={`${data.post.title} | めも帖`}>
