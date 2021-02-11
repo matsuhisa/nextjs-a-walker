@@ -38,7 +38,7 @@ const MonthIndex = (data: monthYearProps) => {
         <ul>
         {data.yearAndMonths?.map((yearAndMonth) => (
           <li>
-            <a href={`/articles/${yearAndMonth.year}/${yearAndMonth.month}`}>{yearAndMonth.year}年{yearAndMonth.month}月</a>
+            <a href={`/articles/${yearAndMonth.year}/${yearAndMonth.month}/`}>{yearAndMonth.year}年{yearAndMonth.month}月</a>
           </li>
         ))}
         </ul>
