@@ -29,6 +29,7 @@ const MonthIndex = (data: monthYearProps) => {
               <a className={'article'}>
                 <p className={'article__date'}>{post.date}</p>
                 <h2 className={'article__title'} dangerouslySetInnerHTML={{ __html: post.title }} />
+                <p className={'article__description'}>{post.description}</p>
               </a>
             </Link>
           ))}
