@@ -22,8 +22,8 @@ const IndexPage = (data: IndexProps) => (
         {data.posts.map((post) => (
           <Link href={`/articles/${post.id.join('/')}`} key={post.id.join('-')}>
             <a className={'article'}>
-              <p className={'article__date'}>{post.date}</p>
               <h2 className={'article__title'} dangerouslySetInnerHTML={{ __html: post.title }} />
+              <p className={'article__date'}>{post.date}</p>
             </a>
           </Link>
         ))}

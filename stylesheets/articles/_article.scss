@@ -18,6 +18,9 @@
     color: #666666;
     line-height: 1.2;
     margin: 0;
+    & + .article__title {
+      margin-top: 0.4rem;
+    }
   }
 
   .article__description {
